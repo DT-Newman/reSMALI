@@ -1,8 +1,4 @@
-
-from os import SCHED_RR, register_at_fork
-from typing import Sequence
-
-
+import pandas as pd
 
 aaDict = {
     'A': 0,
@@ -233,6 +229,29 @@ def predictProtein(protein_seq, sh2 = None, threshold='preset'):
     
     return ret_list
 
+def condensedList(protein_seq, sh2 = None, threshold='preset'):
+    full_list = predictProtein(protein_seq, sh2, threshold )
+    df = pd.DataFrame(full_list, ["Position", "Sequence", "SH2_motif", "SH2_threshold", "score"])
+    position_list = pd.unique(df['Position'])
+    output_list = []
+    for position in position_list:
+        df_loc = df.loc(df['Position'] == position)
+        sh2_domains = pd.unique(df_loc)
+        output_list = output_list.append([position, sh2_domains])
     
+    return output_list
     
+
+
+
+
+
+
+# function to get unique values 
+def unique_list_values(list1): 
+    unique_list = [] 
+    for x in list1: 
+        if x not in unique_list: 
+            unique_list.append(x)
+    return unique_list
 
