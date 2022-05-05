@@ -214,7 +214,7 @@ def getSMALIseq(protein_seq: str) -> list:
     return ret_list
 
 
-def predictProtein(protein_seq, sh2 = None, threshold='preset'):
+def predictProtein(protein_seq, sh2 = None, local_threshold='preset'):
     '''Returns a list containing [positon, sequence, sh2motif, sh2_threshold, score ]'''
     if sh2 is None:
         sh2 = scoreMatrixDict.keys()
@@ -229,8 +229,8 @@ def predictProtein(protein_seq, sh2 = None, threshold='preset'):
     
     return ret_list
 
-def condensedList(protein_seq, sh2 = None, threshold='preset'):
-    full_list = predictProtein(protein_seq, sh2, threshold )
+def condensedList(protein_seq, sh2 = None, local_threshold='preset'):
+    full_list = predictProtein(protein_seq, sh2, local_threshold )
     df = pd.DataFrame(full_list, ["Position", "Sequence", "SH2_motif", "SH2_threshold", "score"])
     position_list = pd.unique(df['Position'])
     output_list = []
