@@ -231,13 +231,14 @@ def predictProtein(protein_seq, sh2 = None, local_threshold='preset'):
 
 def condensedList(protein_seq, sh2 = None, local_threshold='preset'):
     full_list = predictProtein(protein_seq, sh2, local_threshold )
-    df = pd.DataFrame(full_list, ["Position", "Sequence", "SH2_motif", "SH2_threshold", "score"])
+    print(full_list)
+    df = pd.DataFrame(full_list, columns= ["Position", "Sequence", "SH2_motif", "SH2_threshold", "score"])
     position_list = pd.unique(df['Position'])
-    output_list = []
+    output_list = list()
     for position in position_list:
-        df_loc = df.loc(df['Position'] == position)
-        sh2_domains = pd.unique(df_loc)
-        output_list = output_list.append([position, sh2_domains])
+        df_loc = df.loc[df['Position'] == position]
+        sh2_domains = pd.unique(df_loc['SH2_motif'])
+        output_list.append([position, sh2_domains])
     
     return output_list
     
