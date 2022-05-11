@@ -237,7 +237,7 @@ def condensedList(protein_seq, sh2 = None, local_threshold='preset'):
     output_list = list()
     for position in position_list:
         df_loc = df.loc[df['Position'] == position]
-        sh2_domains = pd.unique(df_loc['SH2_motif'])
+        sh2_domains = pd.unique(df_loc['SH2_motif']).tolist()
         output_list.append([position, sh2_domains])
     
     return output_list
