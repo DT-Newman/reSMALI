@@ -34,7 +34,7 @@ To show the reSMALI scores for all valid phospo-tyrosine motifs and SH2 domains 
 ###Example
 
 ```python
-from resmali import resmali
+import resmali
 resmali.predict_protein("EEVVARyLNRNyWEkKQEEARyLN")
 
 >>>[[6, 'ARYLNRN', 'GADS', 1.88, 2.0],
@@ -57,7 +57,7 @@ This function will return a list with only SH2 domain predictions in the format 
 ###Example
 
 ```python
-from resmali import resmali
+import resmali
 resmali.condensed_list("EEVVARyLNRNyWEkKQEEARyLN")
 
 >>>[[6, ['GADS', 'GRAP', 'GRB2', 'GRB7', 'HSH2D', 'SH2D2A', 'SHE']]]
